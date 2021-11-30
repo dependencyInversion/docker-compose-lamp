@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+
+  mariadb:
+    container_name: mariadb
+    image: mariadb:latest
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+    volumes:
+      - ./storage/mysql/:/var/lib/mysql/
+    ports:
+      - 3306:3306
+  php:
+    container_name: apache2_php
+    image: php:apache
+    restart: always
+    volumes:
+      - ./storage/www/:/var/www/html/
+      - ./storage/php/php.ini:/usr/local/etc/php/php.ini
+    ports:
+      - 8080:80
