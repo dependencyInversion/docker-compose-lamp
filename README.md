@@ -1,2 +1,32 @@
-# docker-compose-lamp
-LAMP (Linux, Apache2, MariaDB and PHP) realized as docker compose application allowing fast prototyping for students and developers
+# LAMP service
+
+
+
+## Start
+
+```bash
+docker-compose up -d
+```
+
+---
+
+
+
+## Stop
+
+```bash
+docker-compose down
+```
+
+---
+
+
+
+## See all running processes within docker-compose
+
+```bash
+docker-compose ps
+```
+
+---
+
