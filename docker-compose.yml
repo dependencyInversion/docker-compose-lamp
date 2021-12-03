@@ -31,7 +31,7 @@ services:
     extra_hosts:
       - "mariadb:172.16.0.253"
     depends_on:
-      - mariadb
+      - db
 
 networks:
   app_net:
