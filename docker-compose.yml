@@ -1,23 +1,41 @@
-version: '3.1'
+version: '3.9'
 
 services:
-
-  mariadb:
-    container_name: mariadb
+  db:
+    container_name: db
     image: mariadb:latest
-    restart: always
+    restart: on-failure
     environment:
       MYSQL_ROOT_PASSWORD: example
     volumes:
       - ./storage/mysql/:/var/lib/mysql/
     ports:
       - 3306:3306
-  php:
-    container_name: apache2_php
-    image: php:apache
-    restart: always
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.253
+    extra_hosts:
+      - "webserver:172.16.0.254"
+  webserver:
+    container_name: webserver
+    build: .
+    restart: on-failure
     volumes:
       - ./storage/www/:/var/www/html/
       - ./storage/php/php.ini:/usr/local/etc/php/php.ini
     ports:
       - 8080:80
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.254
+    extra_hosts:
+      - "mariadb:172.16.0.253"
+    depends_on:
+      - mariadb
+
+networks:
+  app_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.0.0/24"
