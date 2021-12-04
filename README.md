@@ -1,14 +1,12 @@
 # LAMP service
 
-
+![](./assets/docker-compose-badge.svg) ![](./assets/licence-badge.svg)
 
 ## Start
 
 ```bash
 docker-compose up -d
 ```
-
----
 
 
 
@@ -18,8 +16,6 @@ docker-compose up -d
 docker-compose down
 ```
 
----
-
 
 
 ## See all running processes within docker-compose
@@ -27,6 +23,4 @@ docker-compose down
 ```bash
 docker-compose ps
 ```
-
----
 
