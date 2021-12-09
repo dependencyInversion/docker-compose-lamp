@@ -32,6 +32,21 @@ services:
       - "mariadb:172.16.0.253"
     depends_on:
       - db
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    extra_hosts:
+      - "mariadb:172.16.0.253"
+    ports:
+      - 8081:80
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mariadb
+    networks:
+      app_net:
+        ipv4_address: 172.16.0.252
+    depends_on:
+      - db
 
 networks:
   app_net:
